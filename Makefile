@@ -1,10 +1,7 @@
-include .makefile_env
+-include ./devops/makefiles/Makefile
 
-pytest:
-	${PYTEST} -m "${mark}" ${var}
-.PHONY: pytest
 
-ut-py:
-	@echo "+++ut-py:"
-	${PYTEST} ${TEST_PATH} -m ut
-.PHONY: ut-py
+test-all:  ## Run all tests
+	@$(MAKE) ${MAKE_TAG} echo-cyan msg="2.1. Unit tests"
+	@$(MAKE) ${MAKE_TAG} pytest mark=ut
+.PHONY: test-all
