@@ -1,0 +1,4 @@
+TEST_PATH := tests
+
+PYTHON := python3
+PYTEST := ${PYTHON} -m pytest -vvv --color=yes

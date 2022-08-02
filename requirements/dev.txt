@@ -1,0 +1,7 @@
+pandas
+jupyter
+ipykernel
+-r ml.txt
+-r plot.txt
+-r lint.txt
+-r test.txt
