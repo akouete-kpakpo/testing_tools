@@ -116,7 +116,9 @@ mistune==0.8.4
 mypy-extensions==0.4.3
     # via black
 nbclient==0.6.6
-    # via nbconvert
+    # via
+    #   nbconvert
+    #   testbook
 nbconvert==6.5.3
     # via
     #   jupyter
@@ -127,6 +129,7 @@ nbformat==5.4.0
     #   nbclient
     #   nbconvert
     #   notebook
+    #   testbook
 nest-asyncio==1.5.5
     # via
     #   ipykernel
@@ -221,6 +224,8 @@ stack-data==0.4.0
     # via ipython
 terminado==0.15.0
     # via notebook
+testbook==0.4.2
+    # via -r requirements/dev.in
 tinycss2==1.1.1
     # via nbconvert
 tomli==2.0.1
