@@ -1,10 +1,15 @@
+import contextlib
 import json
 import os
 from pathlib import Path
-from typing import Any, List, Optional, Set, Union
+from typing import Any, Generator, List, Optional, Set, Union
 from unittest.mock import Mock
 
+from nbconvert.preprocessors.execute import CellExecutionError
 from nbformat import notebooknode
+from testbook import testbook
+
+from testing_tools.error import TestingToolsError
 
 
 def is_executed_by_pytest() -> bool:
@@ -69,3 +74,29 @@ def assert_notebook_is_without_outputs(notebook_path: Union[str, Path]) -> None:
         raise AssertionError(
             f"The following notebook contains outputs: {notebook_path}"
         )
+
+
+def assert_notebook_runs_without_errors(
+    notebook_path: Union[str, Path],
+    timeout: int = -1,
+) -> None:
+    notebook_path = Path(notebook_path)
+    assert notebook_path.exists()
+
+    try:
+        with change_working_directory(notebook_path.parent):
+            with testbook(notebook_path, timeout=timeout, execute=True):
+                pass
+    except CellExecutionError as error:
+        raise TestingToolsError(notebook_path, error) from None
+
+
+@contextlib.contextmanager
+def change_working_directory(path: Union[str, Path]) -> Generator[None, None, None]:
+    """Changes working directory and returns to previous on exit."""
+    prev_cwd = Path.cwd()
+    try:
+        os.chdir(path)
+        yield
+    finally:
+        os.chdir(prev_cwd)

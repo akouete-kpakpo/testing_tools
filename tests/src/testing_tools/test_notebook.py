@@ -4,7 +4,7 @@ from typing import Any
 import pytest
 
 from testing_tools.common_path import NOTEBOOK_PATH, ROOT_DIR
-from testing_tools.error import does_not_raise
+from testing_tools.error import does_not_raise, TestingToolsError
 
 
 @pytest.mark.ut
@@ -57,3 +57,32 @@ def test_assert_notebook_is_without_output_raises_when_expected(
     # Then
     with expectation:
         assert_notebook_is_without_outputs(NOTEBOOK_PATH / notebook)
+
+
+@pytest.mark.e2e
+@pytest.mark.parametrize(
+    "notebook, expectation",
+    [
+        ("01-0-output-0-error.ipynb", does_not_raise()),
+        ("02-1-output-0-error.ipynb", does_not_raise()),
+        ("03-0-output-1-error.ipynb", pytest.raises(TestingToolsError)),
+        ("04-1-output-1-error.ipynb", pytest.raises(TestingToolsError)),
+        ("05-0-output-0-error-1-markdown.ipynb", does_not_raise()),
+        ("06-1-output-0-error-1-markdown.ipynb", does_not_raise()),
+        ("07-0-output-1-error-1-markdown.ipynb", pytest.raises(TestingToolsError)),
+        ("08-1-output-1-error-1-markdown.ipynb", pytest.raises(TestingToolsError)),
+        ("09-tqdm.ipynb", does_not_raise()),
+        ("folder/01-test-notebook-cwd.ipynb", does_not_raise()),
+        ("folder/sub-folder/01-test-notebook-cwd.ipynb", does_not_raise()),
+    ]
+)
+def test_assert_notebook_runs_without_error_raises_when_expected_SLOW(
+    notebook: str,
+    expectation: Any
+) -> None:
+    # Given
+    from testing_tools.notebook import assert_notebook_runs_without_errors
+
+    # Then
+    with expectation:
+        assert_notebook_runs_without_errors(NOTEBOOK_PATH / notebook)
