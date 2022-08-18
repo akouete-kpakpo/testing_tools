@@ -72,8 +72,6 @@ def test_assert_notebook_is_without_output_raises_when_expected(
         ("07-0-output-1-error-1-markdown.ipynb", pytest.raises(TestingToolsError)),
         ("08-1-output-1-error-1-markdown.ipynb", pytest.raises(TestingToolsError)),
         ("09-tqdm.ipynb", does_not_raise()),
-        ("folder/01-test-notebook-cwd.ipynb", does_not_raise()),
-        ("folder/sub-folder/01-test-notebook-cwd.ipynb", does_not_raise()),
     ]
 )
 def test_assert_notebook_runs_without_error_raises_when_expected_SLOW(
