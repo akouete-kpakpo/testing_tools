@@ -35,3 +35,9 @@ pytest:  ## Project pytest
 unit-test:  ## Run a test
 	$(MAKE) ${MAKE_TAG} echo-purple msg="+++unit-test:"
 	@$(MAKE) ${MAKE_TAG} pytest var=${TEST_PATH} mark=ut
+
+
+.PHONY: end-to-end-test
+end-to-end-test:  ## Run a test
+	$(MAKE) ${MAKE_TAG} echo-purple msg="+++end-to-end-test:"
+	@$(MAKE) ${MAKE_TAG} pytest var=${TEST_PATH} mark=e2e
