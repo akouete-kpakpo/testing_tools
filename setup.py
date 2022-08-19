@@ -56,7 +56,7 @@ install_requires = get_install_requires()
 
 setup(
     name=package_name,
-    version="0.0.1",
+    version="v1.0.2",
     author="(c) Fondation Vallet - Benin Excellence",
     author_email="adkevinkpakpo@gmail.com",
     description=description,
