@@ -32,7 +32,7 @@ def get_requirement_paths(
     package_dir: Path = Path.cwd(),
 ):
     requirement_paths = []
-    for file_path in package_dir.glob("requirements/*.txt"):
+    for file_path in package_dir.glob("requirements/*.in"):
         requirement_paths.append(file_path)
     return requirement_paths
 
