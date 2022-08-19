@@ -1,0 +1,28 @@
+{
+  "name": "@akouete-kpakpo/testing_tools",
+  "version": "1.0.0",
+  "description": "notebook testing tools",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/akouete-kpakpo/testing_tools.git"
+  },
+  "keywords": [
+    "testing"
+  ],
+  "author": "Akouete Kpakpo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/akouete-kpakpo/testing_tools/issues"
+  },
+  "homepage": "https://github.com/akouete-kpakpo/testing_tools#readme",
+  "publishConfig": {
+    "@akouete-kpakpo:registry": "https://npm.pkg.github.com"
+  }
+}
