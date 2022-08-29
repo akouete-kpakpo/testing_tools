@@ -88,7 +88,7 @@ def assert_notebook_runs_without_errors(
             with testbook(notebook_path, timeout=timeout, execute=True):
                 pass
     except CellExecutionError as error:
-        raise TestingToolsError(notebook_path, error) from None
+        raise TestingToolsError(error) from None
 
 
 @contextlib.contextmanager
