@@ -1,6 +1,6 @@
 {
   "name": "@akouete-kpakpo/testing_tools",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "notebook testing tools",
   "main": "index.js",
   "directories": {
